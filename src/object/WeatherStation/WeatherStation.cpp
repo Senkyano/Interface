@@ -5,6 +5,8 @@ WeatherStation::WeatherStation(std::string id, std::string name)
 
 }
 
+WeatherStation::~WeatherStation() {}
+
 std::string	WeatherStation::getId() const {
 	return (id_);
 }
@@ -29,4 +31,8 @@ void	WeatherStation::updateData(float temp, float humidity, float pressure) {
 	this->temperature_ = temp;
 	this->humidity_ = humidity;
 	this->pressure_ = pressure;
+}
+
+Health	WeatherStation::getHealth() const {
+	return (this->materialHealth_);
 }
