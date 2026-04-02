@@ -11,6 +11,13 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
 
 qt_add_executable(DroneProto 
 	src/main.cpp
+	src/object/WeatherStation/WeatherStation.cpp
+)
+
+target_include_directories(DroneProto PRIVATE 
+    src
+    src/object/WeatherStation
+    src/object
 )
 
 qt_add_qml_module(DroneProto

@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 Window {
     width: 640
@@ -8,11 +9,41 @@ Window {
     title: "Monitoring Entity"
     color: "#0D1117"
 
-    Text {
-        anchors.centerIn: parent
-        text: "Système Drone : Connecté"
-        color: "#00ff00"
-        font.pixelSize: 24
-        font.bold: true
-    }
+	Column {
+		anchors.centerIn: parent
+		spacing: 20
+		
+		Rectangle {
+			width: 200; height: 200
+			radius: 100
+			color: "#e74c3c"
+			border.color: "white"
+			border.width: 4
+
+			Column {
+				anchors.centerIn: parent
+				Text {
+					property real animatedValue: weatherBackend.temperature
+					color: "white"
+					font.bold: true
+					font.pixelSize: 40
+
+					Behavior on animatedValue {
+						SequentialAnimation {
+							NumberAnimation {
+								duration: 1000; easing.type: Easing.OutExpo
+							}
+						}
+					}
+					text: animatedValue.toFixed(1) + "°C"
+				}
+				Text {
+					text: "TEMPÉRATURE"
+					color: "white"
+					font.pixelSize: 12
+					anchors.horizontalCenter: parent.horizontalCenter
+				}
+			}
+		}
+	}
 }

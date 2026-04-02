@@ -1,7 +1,9 @@
 #include <QGuiApplication>
+#include <QQmlContext>
 #include <QQmlApplicationEngine>
 #include <QDirIterator>
 #include <QDebug>
+#include "WeatherStation.hpp"
 
 using namespace Qt::Literals::StringLiterals;
 
@@ -11,9 +13,12 @@ int main(int argc, char *argv[])
 
 	QQmlApplicationEngine engine;
 
+	WeatherStation	weatherstation("Station_01", "StationHouse");
+
 	engine.addImportPath("/usr/lib/x86_64-linux-gnu/qt6/qml");
 	engine.addImportPath("/usr/lib/qt6/qml");
-
+	engine.rootContext()->setContextProperty("weatherBackend", &weatherstation);
+	
 	const QUrl url(QStringLiteral("qrc:/drone_proto/ui/main.qml"));
 		
 	QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

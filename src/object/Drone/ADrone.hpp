@@ -3,9 +3,12 @@
 
 class ADrone : public IMonitoredEntity {
 	public:
+		ADrone(std::string id, std::string name);
+		~ADrone();
 		std::string		getId() const override;
 		std::string		getName() const override;
 		Health			getHealth() const override;
+		float			getBattery() const;
 
 		virtual void	move();
 		virtual void	stop();
